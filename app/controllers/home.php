@@ -2,6 +2,6 @@
 
 class Home extends Controller {
     public function index($a = '',$b = ''){
-        $this->view('home');
+        $this->view('eshop/index');
     }
 }
