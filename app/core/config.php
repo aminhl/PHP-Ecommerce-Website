@@ -5,6 +5,7 @@ define('WEBSITE_TITLE','My Shop');
 define('DB_NAME','eshop_db');
 define('DB_USER','root');
 define('DB_PASS','');
+define('THEME','eshop/');
 
 define('DEBUG',true);
 
