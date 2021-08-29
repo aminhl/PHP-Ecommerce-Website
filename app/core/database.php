@@ -24,7 +24,7 @@ class Database{
     * Read From Database
     */
     public function read($query,$data = array()){
-        $stmt = self::$con->prepare("$query");
+        $stmt = self::$con->prepare($query);
         $result = $stmt->execute($data);
         if ($result){
             $data = $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -38,7 +38,7 @@ class Database{
     * Write In Database
     */
     public function write($query,$data = array()){
-        $stmt = self::$con->prepare("$query");
+        $stmt = self::$con->prepare($query);
         $result = $stmt->execute($data);
         if ($result){
             return true;
