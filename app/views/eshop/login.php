@@ -1,10 +1,10 @@
 <?php $this->view('header',$data) ?>
 
-	<section id="form"><!--form-->
+	<section id="form" style="margin-top: 5px"><!--form-->
 		<div class="container">
-			<div class="row">
-				<div class="col-sm-4 col-sm-offset-1">
-					<div class="login-form"><!--login form-->
+			<div class="row" style="text-align: center">
+				<div class="col-sm-4 col-sm-offset-1" style="float:none; display: inline-block">
+					<div class="login-form" ><!--login form-->
 						<h2>Login to your account</h2>
 						<form action="#">
 							<input type="text" placeholder="Name" />
