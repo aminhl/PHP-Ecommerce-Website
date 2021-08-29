@@ -1,7 +1,9 @@
 <?php
 
 class Database{
-
+    /*
+     * This Is The Database Class
+     */
     public static $con;
     public function __construct(){
         try {
@@ -16,7 +18,31 @@ class Database{
         if (self::$con){
             return self::$con;
         }
-        $a = new self();
-        return  self::$con;
+        return $instance = new self();
+    }
+    /*
+    * Read From Database
+    */
+    public function read($query,$data = array()){
+        $stmt = self::$con->prepare("$query");
+        $result = $stmt->execute($data);
+        if ($result){
+            $data = $stmt->fetchAll(PDO::FETCH_OBJ);
+            if (is_array($data)){
+                return $data;
+            }
+        }
+        return false;
+    }
+    /*
+    * Write In Database
+    */
+    public function write($query,$data = array()){
+        $stmt = self::$con->prepare("$query");
+        $result = $stmt->execute($data);
+        if ($result){
+            return true;
+        }
+        return false;
     }
 }
