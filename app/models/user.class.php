@@ -4,6 +4,7 @@ class User{
     private $error = "";
     public function signup($POST){
         $data = array();
+        $db = Database::getinstance();
         $data['name'] = trim($_POST['name']);
         $data['email'] = trim($_POST['email']);
         $data['password'] = trim($_POST['password']);
@@ -20,19 +21,36 @@ class User{
         if (strlen($data['password'] < 4)){
             $this->error .= 'Password Must Be At Least 4 Characters Long </br>';
         }
+        # Check If Email Already Exists
+        $sql = 'select * from users where email = :email limit 1';
+        $arr['email'] = $data['email'];
+        $check = $db->read($sql,$arr);
+        if (is_array($check)){
+            $this->error .= 'That Email Is Already In Use </br>';
+        }
+
+        # Check Of The url_address
+        $data['url_address'] = $this->get_random_string_max(60);
+        $sql = 'select * from users where url_address = :url_address limit 1';
+        $arr = false;
+        $arr['url_address'] = $data['url_address'];
+        $check = $db->read($sql,$arr);
+        if (is_array($check)){
+            $data['url_address'] = $this->get_random_string_max(60);
+        }
 
         if (empty($this->error)){
             $data['rank'] = 'customer';
-            $data['url_address'] = $this->get_random_string_max(60);
             $data['date'] = date("Y-m-d H:i:s");
+            $data['password'] = hash('sha1',$data['password']);
             $query = "insert into users (url_address,name,email,password,date,rank) value (:url_address,:name,:email,:password,:date,:rank)";
-            $db = Database::getinstance();
             $result = $db->write($query,$data);
             if ($result){
                 header('Location:'. ROOT . 'login');
                 die;
             }
         }
+        $_SESSION['error'] = $this->error;
     }
     public function login($POST){
 
