@@ -54,6 +54,33 @@ class User{
     }
     public function login($POST){
 
+        $data = array();
+        $db = Database::getinstance();
+
+        $data['email'] = trim($_POST['email']);
+        $data['password'] = trim($_POST['password']);
+
+        if (empty($data['email']) ||!preg_match("/^[a-zA-Z_-]+@[a-zA-Z]+.[a-zA-Z]+$/",$data['email'])){
+            $this->error .= 'Please Enter A Valid Email </br>';
+        }
+        if (strlen($data['password'] < 4)){
+            $this->error .= 'Password Must Be At Least 4 Characters Long </br>';
+        }
+
+        if (empty($this->error)){
+            show($POST);
+            $data['password'] = hash('sha1',$data['password']);
+            # Check If The User Exist
+            $sql = 'select * from users where email = :email && password = :password limit 1';
+            $result = $db->read($sql,$data);
+            if (is_array($result)){
+                $_SESSION['user_url'] = $result[0]->url_address;
+                header('Location:'. ROOT . 'home');
+                die;
+            }
+            $this->error .= 'Wrong Email Or Password .</br>';
+        }
+        $_SESSION['error'] = $this->error;
     }
     public function get_user($url){
 
