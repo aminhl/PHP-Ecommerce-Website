@@ -95,4 +95,16 @@ class User{
         }
         return $text;
     }
+    public function check_login(){
+        if (isset($_SESSION['user_url'])){
+            $arr['url'] = $_SESSION['user_url'];
+            $query = 'select * from user where url_address = :url limit 1';
+            $db = Database::getinstance();
+            $result =  $db->read($query,$arr);
+            if (is_array($result)){
+                return $result[0];
+            }
+        }
+        return false;
+    }
 }
