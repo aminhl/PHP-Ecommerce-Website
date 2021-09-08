@@ -95,7 +95,7 @@ class User{
         }
         return $text;
     }
-    public function check_login(){
+    public function check_login($redirect = false){
         if (isset($_SESSION['user_url'])){
             $arr['url'] = $_SESSION['user_url'];
             $query = 'select * from users where url_address = :url limit 1';
@@ -104,6 +104,10 @@ class User{
             if (is_array($result)){
                 return $result[0];
             }
+        }
+        if ($redirect){
+            header('Location:' . ROOT . 'login');
+            die();
         }
         return false;
     }
