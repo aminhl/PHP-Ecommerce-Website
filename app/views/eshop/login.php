@@ -8,8 +8,8 @@
 					<div class="login-form" ><!--login form-->
 						<h2>Login to your account</h2>
 						<form action="#" method="post">
-                            <input type="email" name ='email' placeholder="Email Address" />
-                            <input type="password" name ='password' placeholder="Password" />
+                            <input type="email" value='<?= $_POST['email'] ?? '' ?>' name ='email' placeholder="Email Address" />
+                            <input type="password" value='<?= $_POST['$password'] ?? '' ?>' name ='password' placeholder="Password" />
 							<span>
 								<input type="checkbox" class="checkbox"> 
 								Keep me signed in
