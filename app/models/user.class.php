@@ -98,7 +98,7 @@ class User{
     public function check_login(){
         if (isset($_SESSION['user_url'])){
             $arr['url'] = $_SESSION['user_url'];
-            $query = 'select * from user where url_address = :url limit 1';
+            $query = 'select * from users where url_address = :url limit 1';
             $db = Database::getinstance();
             $result =  $db->read($query,$arr);
             if (is_array($result)){
@@ -106,5 +106,12 @@ class User{
             }
         }
         return false;
+    }
+    public function logout(){
+        if (isset($_SESSION['user_url'])){
+            unset($_SESSION['user_url']);
+        }
+        header('Location:'. ROOT . 'home');
+        die;
     }
 }

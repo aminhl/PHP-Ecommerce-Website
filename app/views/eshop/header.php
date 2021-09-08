@@ -34,7 +34,9 @@
                         <ul class="nav nav-pills">
                             <li><a href="#"><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
                             <li><a href="#"><i class="fa fa-envelope"></i> info@domain.com</a></li>
-                            <li><a href="#"><i class="fa fa-user"></i> <?= $_SESSION['user_url']  ?></a></li>
+                            <?php if (isset($data['user_data'])): ?>
+                            <li><a href="#"><i class="fa fa-user"></i> <?= $data['user_data']->name ?></a></li>
+                            <?php endif; ?>
                         </ul>
                     </div>
                 </div>
@@ -91,7 +93,11 @@
                             <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
                             <li><a href="checkout"><i class="fa fa-crosshairs"></i> Checkout</a></li>
                             <li><a href="cart"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-                            <li><a href="login"><i class="fa fa-lock"></i> Login</a></li>
+                            <?php if (isset($data['user_data'])): ?>
+                                <li><a href="logout"><i class="fa fa-lock"></i> Logout</a></li>
+                            <?php else: ?>
+                                <li><a href="login"><i class="fa fa-lock"></i> Login</a></li>
+                            <?php endif; ?>
                         </ul>
                     </div>
                 </div>
