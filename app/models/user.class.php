@@ -95,7 +95,14 @@ class User{
         }
         return $text;
     }
-    public function check_login($redirect = false){
+    public function check_login($redirect = false,$allowed = array()){
+        if ((count($allowed) > 0 ) && in_array($row->rank,$allowed)){
+
+        }
+        else{
+            header('Location:' . ROOT . 'login');
+            die();
+        }
         if (isset($_SESSION['user_url'])){
             $arr['url'] = $_SESSION['user_url'];
             $query = 'select * from users where url_address = :url limit 1';

@@ -5,7 +5,7 @@ class Admin extends Controller
     public function index($a = '', $b = '')
     {
         $user = $this->load_model('user');
-        $user_data = $user->check_login();
+        $user_data = $user->check_login(true,["admin"]);
         if (is_object($user_data)){
             $data['user_data'] = $user_data ;
         }
