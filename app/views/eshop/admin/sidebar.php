@@ -33,6 +33,7 @@ MAIN SIDEBAR MENU
                     <span>Categories</span>
                 </a>
                 <ul class="sub">
+                    <li><a  href="<?= ROOT ?>admin/categories/view">View Categories</a></li>
                     <li><a  href="<?= ROOT ?>admin/categories/add">Add New Category</a></li>
                     <li><a  href="<?= ROOT ?>admin/categories/edit">Edit Category</a></li>
                     <li><a  href="<?= ROOT ?>admin/categories/delete">Delete Category</a></li>
@@ -79,3 +80,13 @@ MAIN SIDEBAR MENU
     </div>
 </aside>
 <!--sidebar end-->
+
+<!-- **********************************************************************************************************************************************************
+      MAIN CONTENT
+      *********************************************************************************************************************************************************** -->
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper site-min-height">
+        <h3><i class="fa fa-angle-right"></i> <?= ucwords($data['page_title'])?></h3>
+        <div class="row mt">
+            <div class="col-lg-12">

@@ -1,4 +1,10 @@
 
+</div>
+</div>
+</section><! --/wrapper -->
+</section><!-- /MAIN CONTENT -->
+<!--main content end-->
+
 <!--footer start-->
       <footer class="site-footer">
           <div class="text-center">
