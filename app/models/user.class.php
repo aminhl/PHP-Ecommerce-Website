@@ -107,6 +107,10 @@ class User{
                     return $result;
                 }
             }
+            else{
+                header('Location:' . ROOT . 'login');
+                die();
+            }
         }
         else{
             if (isset($_SESSION['user_url'])){

@@ -2,15 +2,39 @@
 
 <?php $this->view('admin/sidebar',$data); ?>
 <style type="text/css">
-
+    .add_new{
+        width: 500px;
+        height: 300px;
+        position: absolute;
+        padding: 6px;
+        background-color: #eae8e8;
+        box-shadow: 0 0 10px #aaa;
+    }
+    .show{
+        display: block;
+    }
+    .hide{
+        display: none;
+    }
 </style>
 <div class="row mt">
     <div class="col-md-12">
         <div class="content-panel">
             <table class="table table-striped table-advance table-hover">
-                <h4><i class="fa fa-angle-right"></i> Product Categories  <button class="btn btn-primary btn-xs"><i class="fa fa-plus"></i>Add New</button></h4>
-                # Add New Category
-                <div class="add_new"></div>
+                <h4><i class="fa fa-angle-right"></i> Product Categories  <button class="btn btn-primary btn-xs" onclick="show_add_new(event)"><i class="fa fa-plus"></i>Add New</button></h4>
+                 <!--Add New Category-->
+                <div class="add_new hide">
+                    <h4 class="mb"><i class="fa fa-angle-right"></i> Add New Category</h4>
+                    <form class="form-horizontal style-form" method="post">
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">Category Name</label>
+                            <div class="col-sm-10">
+                                <input id="category" name="category" type="text" class="form-control" autofocus>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary" style="position: absolute;bottom: 10px;right: 10px">Save</button>
+                    </form>
+                </div>
                 <hr>
                 <thead>
                 <tr>
@@ -37,8 +61,19 @@
                 </tbody>
             </table>
         </div><!-- /content-panel -->
-    </div><!-- /col-md-12 -->
-</div><!-- /row -->
 
+
+<script type="text/javascript">
+    function show_add_new(e){
+        var show_add_box = document.querySelector(".add_new");
+           if(show_add_box.classList.contains("hide")){
+               show_add_box.classList.remove("hide");
+               var categroy_input = document.querySelector("#category");
+               categroy_input.focus();
+           }else{
+               show_add_box.classList.add("hide");
+           }
+    }
+</script>
 
 <?php $this->view('admin/footer',$data); ?>
