@@ -29,10 +29,11 @@
                         <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">Category Name</label>
                             <div class="col-sm-10">
-                                <input id="category" name="category" type="text" class="form-control" autofocus>
+                                <input id="category" name="category" type="text" class="form-control" autofocus >
                             </div>
                         </div>
-                        <button type="button" class="btn btn-primary" style="position: absolute;bottom: 10px;right: 10px">Save</button>
+                        <button type="button" class="btn btn-warning" style="position: absolute;bottom: 10px;left: 10px" onclick="show_add_new(event)">Close</button>
+                        <button type="button" class="btn btn-primary" style="position: absolute;bottom: 10px;right: 10px" onclick="collect_data(event)">Save</button>
                     </form>
                 </div>
                 <hr>
@@ -64,7 +65,7 @@
 
 
 <script type="text/javascript">
-    function show_add_new(e){
+    function show_add_new(){
         var show_add_box = document.querySelector(".add_new");
            if(show_add_box.classList.contains("hide")){
                show_add_box.classList.remove("hide");
@@ -73,6 +74,28 @@
            }else{
                show_add_box.classList.add("hide");
            }
+    }
+    function collect_data(e){
+        var categroy_input = document.querySelector("#category");
+        if (categroy_input.value.trim() == "" || !isNaN(categroy_input.value.trim())){
+            alert("Enter A Valid Categroy Name ");
+        }
+        send_data(categroy_input.value.trim());
+    }
+    function send_data(data){
+        var ajax = new XMLHttpRequest();
+        var form = new FormData();
+        form.append('name','myname');
+        ajax.addEventListener('readystatechange',function () {
+            if (ajax.readyState === 4 && ajax.status === 200){
+                handle_result(ajax.responseText);
+            }
+        });
+        ajax.open("POST","<?= ROOT ?>ajax",true);
+        ajax.send(form);
+    }
+    function handle_result(result){
+        show_add_new();
     }
 </script>
 
