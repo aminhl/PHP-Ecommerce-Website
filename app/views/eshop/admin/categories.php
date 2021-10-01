@@ -64,39 +64,41 @@
         </div><!-- /content-panel -->
 
 
-<script type="text/javascript">
-    function show_add_new(){
-        var show_add_box = document.querySelector(".add_new");
-           if(show_add_box.classList.contains("hide")){
-               show_add_box.classList.remove("hide");
-               var categroy_input = document.querySelector("#category");
-               categroy_input.focus();
-           }else{
-               show_add_box.classList.add("hide");
-           }
-    }
-    function collect_data(e){
-        var categroy_input = document.querySelector("#category");
-        if (categroy_input.value.trim() == "" || !isNaN(categroy_input.value.trim())){
-            alert("Enter A Valid Categroy Name ");
-        }
-        send_data(categroy_input.value.trim());
-    }
-    function send_data(data){
-        var ajax = new XMLHttpRequest();
-        var form = new FormData();
-        form.append('name','myname');
-        ajax.addEventListener('readystatechange',function () {
-            if (ajax.readyState === 4 && ajax.status === 200){
-                handle_result(ajax.responseText);
+        <script type="text/javascript">
+            function show_add_new(){
+                var show_add_box = document.querySelector(".add_new");
+                if(show_add_box.classList.contains("hide")){
+                    show_add_box.classList.remove("hide");
+                    var category_input = document.querySelector("#category");
+                    category_input.focus();
+                }else{
+                    show_add_box.classList.add("hide");
+                }
             }
-        });
-        ajax.open("POST","<?= ROOT ?>ajax",true);
-        ajax.send(form);
-    }
-    function handle_result(result){
-        show_add_new();
-    }
-</script>
+            function collect_data(e){
+                var  category_input = document.querySelector("#category");
+                if (category_input.value.trim() == "" || !isNaN(category_input.value.trim())){
+                    alert("Please Enter A Valid Category Name");
+                }
+                send_data(category_input.value.trim());
+            }
+            function send_data(data){
+                var ajax = new XMLHttpRequest();
+                var form = new FormData();
+                form.append('data',data);
+                ajax.addEventListener('readystatechange',function () {
+                    if (ajax.readyState === 4 && ajax.status === 200){
+                        handle_result(ajax.responseText);
+                    }
+                });
+
+                ajax.open("POST","<?= ROOT?>ajax",true);
+                ajax.send(form);
+            }
+            function handle_result(result){
+                // alert(result);
+                show_add_new();
+            }
+        </script>
 
 <?php $this->view('admin/footer',$data); ?>
