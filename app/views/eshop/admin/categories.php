@@ -82,7 +82,10 @@
                     alert("Please Enter A Valid Category Name");
                 }
                 var data = category_input.value.trim();
-                send_data({data:data});
+                send_data({
+                    data:data,
+                    data_type:'add_category'
+                });
             }
             function send_data(data = {}){
                 var ajax = new XMLHttpRequest();

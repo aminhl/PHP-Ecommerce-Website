@@ -133,6 +133,6 @@ class User{
             unset($_SESSION['user_url']);
         }
         header('Location:'. ROOT . 'home');
-        die;
+        die();
     }
 }
