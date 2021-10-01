@@ -67,12 +67,13 @@
         <script type="text/javascript">
             function show_add_new(){
                 var show_add_box = document.querySelector(".add_new");
+                var category_input = document.querySelector("#category");
                 if(show_add_box.classList.contains("hide")){
                     show_add_box.classList.remove("hide");
-                    var category_input = document.querySelector("#category");
                     category_input.focus();
                 }else{
                     show_add_box.classList.add("hide");
+                    category_input.value = "";
                 }
             }
             function collect_data(e){
@@ -80,12 +81,12 @@
                 if (category_input.value.trim() == "" || !isNaN(category_input.value.trim())){
                     alert("Please Enter A Valid Category Name");
                 }
-                send_data(category_input.value.trim());
+                var data = category_input.value.trim();
+                send_data({data:data});
             }
-            function send_data(data){
+            function send_data(data = {}){
                 var ajax = new XMLHttpRequest();
-                var form = new FormData();
-                form.append('data',data);
+
                 ajax.addEventListener('readystatechange',function () {
                     if (ajax.readyState === 4 && ajax.status === 200){
                         handle_result(ajax.responseText);
@@ -93,10 +94,10 @@
                 });
 
                 ajax.open("POST","<?= ROOT?>ajax",true);
-                ajax.send(form);
+                ajax.send(JSON.stringify(data));
             }
             function handle_result(result){
-                // alert(result);
+                 alert(result);
                 show_add_new();
             }
         </script>
