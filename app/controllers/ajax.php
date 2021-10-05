@@ -11,8 +11,19 @@ class Ajax extends Controller{
               $check = $category->create($data);
               if (!empty($_SESSION['error'])){
                   $arr['message'] = $_SESSION['error'];
+                  $_SESSION['error'] = "";
                   $arr['message_type'] = "error";
                   $arr['data'] = "";
+                  $cats = $category->get_all();
+                  if (is_array($cats)){
+                      foreach ($cats as $cat_row){
+                          echo '<tr>';
+                          foreach ($cat_row as $value){
+                              echo '<td> </td>';
+                          }
+                          echo '</tr>';
+                      }
+                  }
                   echo json_encode($arr);
               }else{
                   $arr['message'] = "Category Added Successfully";

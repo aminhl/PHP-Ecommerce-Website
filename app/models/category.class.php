@@ -7,7 +7,7 @@ class Category{
         if (!preg_match("/^[a-zA-Z]+$/",trim($arr["category"]))){
             $_SESSION['error'] = "Please Enter A Valid Category Name";
         }
-        if (empty($_SESSION['error'])){
+        if (!isset($_SESSION['error']) || empty($_SESSION['error'])){
             $query = "insert into  categories (category) values (:category) ";
             $check = $DB->write($query,$arr);
             if ($check){
@@ -21,5 +21,9 @@ class Category{
     }
     public function delete($DATA){
 
+    }
+    public function get_all(){
+        $DB = Database::getinstance();
+        return $DB->read("select * from categories");
     }
 }

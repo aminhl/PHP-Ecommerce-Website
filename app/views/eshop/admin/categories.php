@@ -46,7 +46,7 @@
                     <th><i class=" fa fa-edit"></i> Action</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="table_body">
                 <tr>
                     <td><a href="basic_table.html#">Company Ltd</a></td>
                     <td class="hidden-phone">Lorem Ipsum dolor</td>
@@ -100,13 +100,15 @@
                 ajax.send(JSON.stringify(data));
             }
             function handle_result(result){
-                alert(result);
                 if (result != ""){
                     var obj = JSON.parse(result);
                     if (typeof obj.message_type != "undefined"){
                         if (obj.message_type == "info"){
                             alert(obj.message);
                             show_add_new();
+
+                            var table_body = document.querySelector("#table_body");
+                            table_body.innerHTML = obj.data;
                         }else{
                             alert(obj.message);
                         }
