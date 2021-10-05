@@ -24,6 +24,23 @@ class Category{
     }
     public function get_all(){
         $DB = Database::getinstance();
-        return $DB->read("select * from categories");
+        return $result = $DB->read("select * from categories");
+    }
+    public function make_table($cats){
+        $result = "";
+        if (is_array($cats)){
+            foreach ($cats as $cat_row){
+                $result .= '<tr>';
+                $result .= '<td><a href="basic_table.html#">'. $cat_row->category .'</a></td>
+                                    <td><span class="label label-info label-mini">'. $cat_row->diable .'</span></td>
+                                    <td>
+                                        <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                        <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                        <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                    </td>';
+                $result .= '</tr>';
+            }
+        }
+    return $result;
     }
 }

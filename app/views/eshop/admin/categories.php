@@ -39,8 +39,6 @@
                 <hr>
                 <thead>
                 <tr>
-                    <th><i class="fa fa-bullhorn"></i> Category</th>
-                    <th class="hidden-phone"><i class="fa fa-question-circle"></i> Descrition</th>
                     <th><i class="fa fa-bookmark"></i> Price</th>
                     <th><i class=" fa fa-edit"></i> Status</th>
                     <th><i class=" fa fa-edit"></i> Action</th>
@@ -49,8 +47,6 @@
                 <tbody id="table_body">
                 <tr>
                     <td><a href="basic_table.html#">Company Ltd</a></td>
-                    <td class="hidden-phone">Lorem Ipsum dolor</td>
-                    <td>12000.00$ </td>
                     <td><span class="label label-info label-mini">Enabled</span></td>
                     <td>
                         <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
