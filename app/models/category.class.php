@@ -3,8 +3,8 @@
 class Category{
     public function create($DATA){
         $DB = Database::getinstance();
-        $arr["category"] = $DATA->data;
-        if (!preg_match("/^[a-zA-Z]$/",$arr["category"])){
+        $arr["category"] = ucwords($DATA->data);
+        if (!preg_match("/^[a-zA-Z]+$/",trim($arr["category"]))){
             $_SESSION['error'] = "Please Enter A Valid Category Name";
         }
         if (empty($_SESSION['error'])){

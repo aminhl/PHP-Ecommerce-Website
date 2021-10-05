@@ -100,8 +100,18 @@
                 ajax.send(JSON.stringify(data));
             }
             function handle_result(result){
-                 alert(result);
-                show_add_new();
+                alert(result);
+                if (result != ""){
+                    var obj = JSON.parse(result);
+                    if (typeof obj.message_type != "undefined"){
+                        if (obj.message_type == "info"){
+                            alert(obj.message);
+                            show_add_new();
+                        }else{
+                            alert(obj.message);
+                        }
+                    }
+                }
             }
         </script>
 
